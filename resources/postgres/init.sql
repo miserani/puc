@@ -20,4 +20,4 @@ CREATE TABLE card_events (
     lat VARCHAR(255) NOT NULL
 );
 
-CREATE INDEX idx_credit_events_trans_date ON card_events (event_date);
+CREATE INDEX idx_credit_events_trans_date ON card_events (event_datetime);

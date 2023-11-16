@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  jupyterlab:
+    image: jupyter/pyspark-notebook:latest
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - IP=${IP}
+    volumes:
+      - ../../notebooks:/home/jovyan/work
+    command: start-notebook.sh --NotebookApp.token=''
+    user: root
+    working_dir: /home/jovyan/work
+    entrypoint:
+      - "tini"
+      - "-g"
+      - "--"
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+networks:
+  default:
+    external:
+      name: data-net

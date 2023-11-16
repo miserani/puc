@@ -80,10 +80,10 @@ jupyter-up:
 		exit 1; \
 	fi
 	echo "Usando o endereço IP: $(IP)"
-	IP=$(IP) docker-compose --verbose -f jupyter/docker-compose.jupyter.yaml up -d
+	IP=$(IP)  sudo -E docker-compose --verbose -f jupyter/docker-compose.jupyter.yaml up -d
 
 jupyter-down:
-	docker-compose -f jupyter/docker-compose.jupyter.yaml down
+	sudo docker-compose -f jupyter/docker-compose.jupyter.yaml down
 
 
 

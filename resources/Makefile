@@ -22,6 +22,9 @@ docker-install:
 	# Install pip3
 	sudo apt install python3-pip
 
+docker-network:
+	sudo docker network create data-net
+
 # ---------------------
 # Postgres
 # ---------------------
@@ -43,7 +46,7 @@ postgres-down:
 	docker-compose -f postgres/docker-compose.postgres.yaml down
 
 postgres-populate:
-	python3 -m events --db 'postgres'
+	python3 -m credit-events --db 'postgres'
 
 
 # ---------------------

@@ -37,13 +37,13 @@ help-postgres:
 	@echo "  postgres-populate: Populates the Postgres database with events data"
 
 postgres-build:
-	docker build -t postgres-postgis postgres/postgis
+	sudo docker build -t postgres-postgis postgres/postgis
 
 postgres-up:
-	docker-compose -f postgres/docker-compose.postgres.yaml up -d
+	sudo docker-compose -f postgres/docker-compose.postgres.yaml up -d
 
 postgres-down:
-	docker-compose -f postgres/docker-compose.postgres.yaml down
+	sudo docker-compose -f postgres/docker-compose.postgres.yaml down
 
 postgres-populate:
 	python3 -m credit-events --db 'postgres'
@@ -66,7 +66,7 @@ kafka-up:
 	echo "Usando o endereço IP: $(IP)"
 	IP=$(IP) docker-compose --verbose -f kafka/docker-compose.kafka.yaml up -d
 kafka-down:
-	docker-compose -f kafka/docker-compose.kafka.yaml down
+	sudo docker-compose -f kafka/docker-compose.kafka.yaml down
 
 # ---------------------
 # Jupyter Notebook
@@ -88,14 +88,17 @@ jupyter-up:
 jupyter-down:
 	sudo docker-compose -f jupyter/docker-compose.jupyter.yaml down
 
+# ---------------------
+# Airflow
+# ---------------------
 
+help-airflow:
+	@echo "Options for Airflow:"
+	@echo "  airflow-up: Starts the Airflow service (use IP=<ip_address> to define the IP)"
+	@echo "  airflow-down: Stops the Airflow service"
 
+airflow-up:
+	sudo docker-compose -f airflow/docker-compose.airflow.yaml up -d
 
-
-
-
-
-
-
-
-
+airflow-down:
+	sudo docker-compose -f airflow/docker-compose.airflow.yaml down

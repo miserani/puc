@@ -21,3 +21,5 @@ CREATE TABLE card_events (
 );
 
 CREATE INDEX idx_credit_events_trans_date ON card_events (event_datetime);
+
+CREATE DATABASE airflow;

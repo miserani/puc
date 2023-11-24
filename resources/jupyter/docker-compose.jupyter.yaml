@@ -13,6 +13,7 @@ services:
     command: start-notebook.sh --NotebookApp.token=''
     user: root
     working_dir: /home/jovyan/work
+    restart: unless-stopped
     entrypoint:
       - "tini"
       - "-g"
